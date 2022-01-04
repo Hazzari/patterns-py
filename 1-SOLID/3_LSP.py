@@ -1,5 +1,5 @@
 """
-Принцип подстановки Барбары Лисков
+Принцип подстановки Барбары Лисков ( замена типа подтипом )
 """
 
 
@@ -7,7 +7,6 @@ class Rectangle:
     def __init__(self, width, height):
         self._height = height
         self._width = width
-
 
     @property
     def area(self):
