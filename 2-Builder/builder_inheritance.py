@@ -11,6 +11,7 @@ class Person:
     def new():
         return PersonBuilder()
 
+
 class PersonBuilder:
     def __init__(self):
         self.person = Person()
@@ -39,9 +40,9 @@ class PersonBirthDateBuilder(PersonJobBuilder):
 
 if __name__ == '__main__':
     pb = PersonBirthDateBuilder()
-    me = pb\
-        .called('Dmitri')\
-        .works_as_a('quant')\
-        .born('1/1/1980')\
+    me = pb \
+        .called('Dmitri') \
+        .works_as_a('quant') \
+        .born('1/1/1980') \
         .build()  # this does NOT work in C#/C++/Java/...
     print(me)
