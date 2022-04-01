@@ -53,7 +53,7 @@ class Research:  # high-level module
     #             print(f'У Джона есть ребенок по имени {r[2].name}')
 
     # Устранение зависимости
-    def __init__(self, browser):
+    def __init__(self, browser: Relationships) -> None:
         for p in browser.find_all_children_of('John'):
             print(f'У Джона есть ребенок по имени {p}')
 
