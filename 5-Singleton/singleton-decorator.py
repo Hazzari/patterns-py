@@ -11,17 +11,17 @@ def singleton(class_):
 
 @singleton
 class Database:
-    def __init__(self):
-        print('Loading database')
+    def __init__(self, name_db):
+        print(f'Loading database {name_db}')
+        self.name = name_db
+
+    def __str__(self):
+        return f'Database {self.name}'
 
 
 if __name__ == '__main__':
-    d1 = Database()
-    d2 = Database()
+    d1 = Database('NoSQL')
+    d2 = Database('PostgresQL')
     print(d1 == d2)
-
-    a = 15
-    b = 22
-    c = a * b
-
+    print(d2)
 
