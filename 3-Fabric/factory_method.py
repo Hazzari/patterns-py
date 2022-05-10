@@ -20,18 +20,23 @@ class Point:
         self.x = x
         self.y = y
 
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
     def __str__(self):
         return f'x:{self.x} y:{self.y}'
 
     # Когда фабричных методов становится слишком много можно сгруппировать их в отдельную сущность
     class PointFactory:
-        def new_cartesian_point(self, x, y):
+        @staticmethod
+        def new_cartesian_point(x, y):
             point = Point(x, y)
             point.x = x
             point.y = y
             return point
 
-        def new_polar_point(self, rho, theta):
+        @staticmethod
+        def new_polar_point(rho, theta):
             return Point(rho * cos(theta), rho * sin(theta))
 
     factory = PointFactory()
@@ -40,6 +45,8 @@ class Point:
 
 if __name__ == '__main__':
     p = Point(2, 3)
-    p2 = Point.factory.new_polar_point(3, 4)
+    p2 = Point.factory.new_polar_point(5, 6)
+    p3 = Point.factory.new_cartesian_point(2, 3)
     print(p)
     print(p2)
+    print(p == p3)

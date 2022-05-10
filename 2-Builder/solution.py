@@ -4,7 +4,7 @@ class Field:
         self.name = name
 
     def __str__(self):
-        return 'self.%s = %s' % (self.name, self.value)
+        return f'self.{self.name} = {self.value}'
 
 
 class Class:
@@ -27,8 +27,8 @@ class CodeBuilder:
     def __init__(self, root_name):
         self.__class = Class(root_name)
 
-    def add_field(self, type, name):
-        self.__class.fields.append(Field(type, name))
+    def add_field(self, type_, name):
+        self.__class.fields.append(Field(type_, name))
         return self
 
     def __str__(self):

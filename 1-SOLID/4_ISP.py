@@ -36,7 +36,7 @@ class OldFashionPrinter(Machine):
         pass  # noop
 
     def scan(self, document):
-        """Можно возмещаться что принтер не умеет сканировать"""
+        """Можно возмущаться что принтер не умеет сканировать"""
         """Not supported!"""
         raise NotImplementedError('Printer cannot scan!')
 

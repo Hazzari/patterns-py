@@ -48,4 +48,4 @@ if __name__ == '__main__':
     group.children.append(Square('Blue'))
     drawing.children.append(group)
 
-    print(drawing)  
+    print(drawing)

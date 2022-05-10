@@ -30,33 +30,52 @@ class ProductFilter:
 
     def filter_by_color(self, products, color):
         for p in products:
-            if p.color == color: yield p
+            if p.color == color:
+                yield p
 
     def filter_by_size(self, products, size):
         for p in products:
-            if p.size == size: yield p
+            if p.size == size:
+                yield p
 
     def filter_by_size_and_color(self, products, size, color):
         for p in products:
             if p.color == color and p.size == size:
                 yield p
 
-    # тут взрывной рост сложности
+    ...
+
+    # В этом примере показан взрывной рост сложности.
 
 
+#
 # Корпоративный шаблон - Specification
-
-
+# Создает я базовый класс и от него наследуются нужные новые спецификации.
 class Specification:
-    """ Базовый класс
-    """
+    """Базовый класс."""
 
     def is_satisfied(self, item):
         pass
 
-    # and operator makes life easier
+    # and упрощаем жизнь для использования &
     def __and__(self, other):
         return AndSpecification(self, other)
+
+
+# Комбинатор - структура которая объединяет другие структуры.
+# Для реализации логики filter_by_size_and_color
+class AndSpecification(Specification):
+    """Проверяет какие спецификации применяются."""
+
+    def __init__(self, *args):
+        self.args = args
+
+    def is_satisfied(self, item):
+        """Проверка на то что удовлетворена ли полностью спецификация.
+
+        Проходит по всем спецификациям и проверяем удовлетворена ли она.
+        """
+        return all(map(lambda spec: spec.is_satisfied(item), self.args))
 
 
 class Filter:
@@ -78,15 +97,6 @@ class SizeSpecification(Specification):
 
     def is_satisfied(self, item):
         return item.size == self.size
-
-
-class AndSpecification(Specification):
-    def __init__(self, *args):
-        self.args = args
-
-    def is_satisfied(self, item):
-        return all(map(
-            lambda spec: spec.is_satisfied(item), self.args))
 
 
 class BetterFilter(Filter):

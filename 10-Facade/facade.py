@@ -8,6 +8,7 @@ class Buffer:
         self.buffer = [' '] * (width * height)
 
     def __getitem__(self, item):
+        # Индексация для того что бы получить символ в определенной позиции в буфере
         return self.buffer.__getitem__(item)
 
     def write(self, text):

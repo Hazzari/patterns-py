@@ -4,8 +4,7 @@
 
 
 class Journal:
-    """ Ответственность журнала добавлять, хранить, удалять записи
-    """
+    """Ответственность журнала добавлять, хранить, удалять записи."""
 
     def __init__(self):
         self.entries = []
@@ -40,27 +39,25 @@ class Journal:
 class PersistenceManager:
     @staticmethod
     def save_to_file(journal, filename):
-        """ Сохранение журнала
-        """
-        file = open(filename, 'w')
-        file.write(str(journal))
-        file.close()
+        """Сохранение журнала."""
+        with open(filename, 'w') as f:
+            f.write(str(journal))
 
     def load(self, filename): pass
 
     def low_from_web(self, uri): pass
 
 
-j = Journal()
-j.add_entry('Мучился изучая паттерны')
-j.add_entry('Ужинал плотно')
+journal = Journal()
+journal.add_entry('Мучился изучая паттерны')
+journal.add_entry('Ужинал плотно')
 
 # print(j)
 
 file = r'journal.txt'
 
-p = PersistenceManager()
-p.save_to_file(j, file)
+pm = PersistenceManager()
+pm.save_to_file(j, file)
 
 # verify!
 with open(file) as fh:
